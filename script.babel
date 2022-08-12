@@ -1,0 +1,93 @@
+import React from "https://cdn.skypack.dev/react";
+import ReactDOM from "https://cdn.skypack.dev/react-dom";
+const useState = React.useState;
+
+const quotes = [
+  {
+    text: `"The greatest glory in living lies not in never falling, but in rising every time we fall."`,
+    author: "Nelson Mandela"
+  },
+  {
+    text: `"The way to get started is to quit talking and begin doing."`,
+    author: "Walt Disney"
+  },
+  {
+    text: `"Your time is limited, so don't waste it living someone else's life. Don't be trapped by dogma – which is living with the results of other people's thinking. "`,
+    author: "Steve Jobs"
+  },
+  {
+    text: `"If you look at what you have in life, you'll always have more. If you look at what you don't have in life, you'll never have enough. "`,
+    author: "Oprah Winfrey"
+  },
+  {
+    text: `"If you set your goals ridiculously high and it's a failure, you will fail above everyone else's success."`,
+    author: "James Cameron"
+  },
+  {
+    text: `"Don't judge each day by the harvest you reap but by the seeds that you plant."`,
+    author: "Robert Louis Stevenson"
+  },
+  {
+    text: `"The best and most beautiful things in the world cannot be seen or even touched — they must be felt with the heart. "`,
+    author: "Helen Keller"
+  },
+  {
+    text: `"Whoever is happy will make others happy too."`,
+    author: "Anne Frank"
+  },
+  {
+    text: `"Life is never fair, and perhaps it is a good thing for most of us that it is not."`,
+    author: "Oscar Wilde"
+  },
+  {
+    text: `"Live in the sunshine, swim the sea, drink the wild air."`,
+    author: "Ralph Waldo Emerson"
+  },
+  {
+    text: `"Do not let making a living prevent you from making a life."`,
+    author: "John Wooden"
+  },
+  {
+    text: `"Many of life's failures are people who did not realize how close they were to success when they gave up. "`,
+    author: "Thomas A. Edison"
+  },
+  {
+    text: `"Love the life you live. Live the life you love."`,
+    author: "Bob Marley"
+  }
+];
+
+const QuoteBox = ({ quote, handleNewQuote }) => (
+  <div id="wrapper">
+    <div id="quote-box">
+      <p id="text">{quote.text} </p>
+      <h2 id="author">{quote.author} </h2>
+      <div className="actions">
+        <button id="new-quote" className="button" onClick={handleNewQuote}>
+          New Quote
+        </button>
+        <a href="twitter.com/intent/tweet" target="_blank" id="tweet-quote">
+          Tweet
+        </a>
+      </div>
+    </div>
+  </div>
+);
+
+const getRandomIndex = (max) =>
+  Math.round(Math.random() * (quotes.length - 1 - 0) + 0);
+
+const App = () => {
+  const [quote, setQuote] = useState(quotes[getRandomIndex()]);
+  const handleNewQuote = () => {
+    setQuote(quotes[getRandomIndex()]);
+  };
+
+  return (
+    <div className="main">
+      <QuoteBox handleNewQuote={handleNewQuote} quote={quote} />
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("root"));
